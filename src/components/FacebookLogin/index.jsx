@@ -15,7 +15,7 @@ function FacebookLogin() {
     setLoginFacebook(false)
   };
 
-    useEffect(() => {console.log(profile)}, [profile])
+    // useEffect(() => {console.log(profile)}, [profile])
 
   return (
     <div>
