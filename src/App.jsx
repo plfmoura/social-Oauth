@@ -1,25 +1,34 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import './App.css'
 import { LoginContext } from './context/LoginContext'
 
 function App() {
-  const [ userName, setUserName] = useState()
-  const [ showPrivate, setShowPrivate] = useState(false)
+  const [ showPrivate, setShowPrivate ] = useState(false)
   const [ status, setStatus ] = useState('')
-
+  const [ userName, setUserName ] = useState('')
+  const emailRef = useRef()
+  const passwordRef = useRef()
+ 
   const db = {
-    user: 'plfmoura'
+    user: 'plfmoura',
+    name: 'Pedro Moura',
+    password: '123'
   }
 
   const login = () => {
-    if(userName === db.user){
-      setStatus('Cadastro efetuado!')
+    let email = emailRef.current.value;
+    let password = passwordRef.current.value;
+  
+    if(email === db.user && password === db.password){
+      setStatus('Usuário encontrado!')
+      setUserName(db.name)
       setTimeout(() => {
         setShowPrivate(true)
+        setStatus('')
       }, 2000)
     } else {
-      setStatus('Usuário já cadastrado.')
+      setStatus('Usuário não encontrado.')
       setTimeout(() => {
         setStatus('')
       }, 3000)
@@ -40,13 +49,14 @@ function App() {
     <div className="App">
       <LoginContext.Provider 
         value={{ 
-          setUserName, 
           setShowPrivate,
           showPrivate,
-          userName,
           login,
           logout,
-          status
+          status,
+          emailRef,
+          passwordRef,
+          userName
           }}>
         <Outlet />
       </LoginContext.Provider>

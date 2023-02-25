@@ -8,12 +8,11 @@ import FacebookLogin from '../FacebookLogin';
 import { LoginContext } from '../../context/LoginContext';
 
 function ModalLogin() {
-  
-    const { setUserName, login, logout, showPrivate, setShowPrivate, userName, status } = useContext(LoginContext)
+    const {login, logout, showPrivate, status, emailRef, passwordRef, userName} = useContext(LoginContext)
     const [data, setData] = useState([])
     const [loginGoogle, setLoginGoogle] = useState(false)
     const [show, setShow] = useState('hidden')
-    const [ modal, setModal ] = useState(false)
+    const [modal, setModal] = useState(false)
 
     const handleClick = () => {
         setModal(!modal)
@@ -34,7 +33,7 @@ function ModalLogin() {
 
   return (
         <div className={style.modalContainer}>
-            <button onClick={ handleClick }>Fazer Login</button>
+            <button onClick={ handleClick } style={{padding: "1rem"}}>Fazer Login</button>
             <div className={style.formLogin} style={{visibility: show}}>
                 <span onClick={() => setModal(false)}>X</span>
                 {showPrivate ? (
@@ -42,7 +41,7 @@ function ModalLogin() {
                         <div>
                             <img src="logo.png" alt="" width="40px" />
                             <h4>Usuário Cadastrado com Sucesso!</h4>
-                            <p>Seja Bem-vindo {userName} </p>
+                            <p>Seja Bem-vindo {userName}!</p>
                         </div>
                         <div className={style.formContainer}>
                             <button className={style.cadastrartBtn} style={{marginTop: '1rem'}} onClick={ logout }>Sair</button>
@@ -57,8 +56,8 @@ function ModalLogin() {
                             <p>Faça seu cadastro agora e comece a explorar nossos passeios.</p>
                         </div>
                         <div className={style.formContainer}>
-                            <input type="text" placeholder='Digite seu email' value={data.email} onChange={(e) => setUserName(e.target.value)}/>
-                            <input type="password" placeholder='Digite uma Senha'/>
+                            <input type="text" placeholder='Digite seu email' value={data.email} ref={emailRef}/>
+                            <input type="password" placeholder='Digite uma Senha' ref={passwordRef}/>
                             <input type="password" placeholder='Confirme sua Senha'/>
                             <p className={style.authStatus}>{status}</p>
                             <button className={style.cadastrartBtn} onClick={ login }>Cadastrar</button>
