@@ -1,9 +1,9 @@
 @react-oauth/google
 
-to start Google Auth
+* to start Google Auth
 
-npm i @react-oauth/google
+  - npm i @react-oauth/google
 
-to start Facebook Auth
+* to start Facebook Auth
 
-npm i react-social-login
+  - npm i react-social-login
