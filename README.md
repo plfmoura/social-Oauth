@@ -1,9 +1,16 @@
-@react-oauth/google
+REACT JavaScript
 
-* to start Google Auth
+npm install
+
+npm run dev 
+
+
+
+
+* to install Google Auth
 
   - npm i @react-oauth/google
 
-* to start Facebook Auth
+* to install Facebook Auth
 
   - npm i react-social-login
