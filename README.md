@@ -4,7 +4,7 @@ npm install
 
 npm run dev 
 
-
+email: plfmoura
 
 
 * to install Google Auth
